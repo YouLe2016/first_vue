@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+    <h3>列表渲染指令</h3>
+    <ul>
+        <li v-for="(item, index) in userList">{{ index }}: {{ item }}</li>
+    </ul>
+    <hr/>
+    <ol>
+        <li v-for="item in userList">{{ item }}</li>
+    </ol>
+    <h4>Key属性</h4>
+    <p>目前不加没有太大问题，在组件化开发时如果不加会报错哦</p>
+    <p>看一个例子。把第一个勾选后，再添加就出现异常现象了。而且不要用index，因为index也是动态变化的</p>
+    <div>
+        <input type="text" v-model="word"/>
+        <button @click="addWord">添加</button>
+    </div>
+    <ul>
+        <li v-for="item in words" :key="item.id"><input type="checkbox"> {{item.id}}: {{item.text}}</li>
+    </ul>
+</div>
+
+<script>
+    const {createApp} = Vue
+
+    createApp({
+        data() {
+            return {
+                userList: ["zhangsan", "lisi", "wangwu"],
+                words: [
+                    {id: 1, text: "hello"},
+                ],
+                word: "",
+                nextId: 2
+            }
+        },
+        methods: {
+            addWord() {
+                if (this.word != "") {
+                    this.words.unshift({id: this.nextId, text: this.word})
+                    this.word = ""
+                    this.nextId++
+                }
+            }
+        }
+    }).mount('#app')
+</script>
+
+</body>
+</html>

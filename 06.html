@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+<div id="app">
+    <h3>条件渲染指令</h3>
+    <button @click="flag = !flag">切换</button>
+    <p v-if="flag">v-if控制</p>
+    <p v-show="flag">v-show控制</p>
+    <p>占个位置</p>
+    <hr/>
+    <p v-text="num"></p>
+    <p v-if="num <=0.33"> 小</p>
+    <p v-else-if="num <=0.66"> 中</p>
+    <p v-else> 大</p>
+    <button @click="num=Math.random()">再来一次</button>
+</div>
+
+<script>
+    const {createApp} = Vue
+
+    createApp({
+        data() {
+            return {
+                flag: true,
+                num: Math.random()
+            }
+        }
+    }).mount('#app')
+</script>
+
+</body>
+</html>

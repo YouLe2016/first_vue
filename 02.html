@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+    <p>姓名：{{username}}</p>
+    <p>性别：{{gender}}</p>
+    <p>{{desc}}</p>
+    <p v-html='desc'></p>
+</div>
+
+<script>
+    const {createApp} = Vue
+
+    createApp({
+        data() {
+            return {
+                username: '张三',
+                gender: '男',
+                desc: '<a href="https://www.baidu.com">百度</a>'
+            }
+        }
+    }).mount('#app')
+</script>
+
+</body>
+</html>
